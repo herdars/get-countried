@@ -45,5 +45,6 @@ export class SearchBoxComponent implements OnInit {
     this.filteredCountries = searchValue.length >= 3
       ? filter(this.countryInfoSet, (country: CountryInfo) => country.name.toLowerCase().indexOf(searchValue) > -1)
       : [];
+    this.filteredCountries.length = this.filteredCountries.length > 10 ? 10 : this.filteredCountries.length;
   }
 }

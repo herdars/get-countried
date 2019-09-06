@@ -5,6 +5,7 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {CountryService} from "./shared/services/country.service";
 import {of, throwError} from "rxjs";
 import {COUNTRY_INFO_SET} from "./shared/constants/shared.constants.spec";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -16,7 +17,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [AppComponent],
-      providers: [CountryService]
+      providers: [CountryService],
+      schemas: [NO_ERRORS_SCHEMA]
     });
   });
 

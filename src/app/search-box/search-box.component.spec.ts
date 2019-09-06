@@ -23,7 +23,7 @@ class TestHostComponent {
   }
 }
 
-fdescribe('SearchBoxComponent', () => {
+describe('SearchBoxComponent', () => {
   let component: SearchBoxComponent;
   let fixture: ComponentFixture<SearchBoxComponent>;
 
@@ -121,11 +121,11 @@ fdescribe('SearchBoxComponent', () => {
     });
 
     describe('searchCountries', () => {
-      it('should populate filteredCountries with a set of filtered country results from the country info set if the search string is 3 chars or longer', () => {
-        component.countryInfoSet = COUNTRY_INFO_SET;
+      it('should populate filteredCountries with a set of filtered country results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
+        component.countryInfoSet = [COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0]];
         (component as any).searchCountries('afg');
 
-        expect(component.filteredCountries).toEqual([COUNTRY_INFO_SET[0]]);
+        expect(component.filteredCountries.length).toBe(10);
       });
 
       it('should populate filteredCountries with an empty array if the search string is less than 3 chars', () => {
@@ -134,6 +134,7 @@ fdescribe('SearchBoxComponent', () => {
 
         expect(component.filteredCountries).toEqual([]);
       });
+
     });
   });
 
