@@ -14,12 +14,14 @@ import {CountryInfo} from "../shared/interfaces/shared.interfaces";
 @Component({
   template: `
       <gtc-search-box [countryInfoSet]="countryInfoSet"
+                      [countryIncoming]="selectedCountry"
                       (countrySelected)="updateSelectedCountry($event)">
       </gtc-search-box>
   `
 })
 class TestHostComponent {
-  countryInfoSet:Array<CountryInfo> = COUNTRY_INFO_SET;
+  countryInfoSet: Array<CountryInfo> = COUNTRY_INFO_SET;
+  selectedCountry: CountryInfo = COUNTRY_INFO_SET[1];
 
   updateSelectedCountry(evt) {
   }
@@ -107,6 +109,30 @@ describe('SearchBoxComponent', () => {
       });
     });
 
+    describe('on changes', () => {
+      it('should update the form control value to the incoming value if the form exists', () => {
+        component.ngOnInit();
+        component.ngOnChanges({
+          countryIncoming: {
+            currentValue: COUNTRY_INFO_SET[0]
+          } as any
+        });
+
+        expect(component.inputForm.controls['search'].value).toEqual(COUNTRY_INFO_SET[0]);
+      });
+
+      it('should not modify the form if one doesn\'t exist', () => {
+        component.inputForm = null;
+        component.ngOnChanges({
+          countryIncoming: {
+            currentValue: COUNTRY_INFO_SET[0]
+          } as any
+        });
+
+        expect(component.inputForm).toBeNull();
+      });
+    });
+
     describe('formatCountryName', () => {
       it('should return back the formatted country name for display', () => expect(component.formatCountryName(COUNTRY_INFO_SET[0])).toBe('Afghanistan - AFG'));
     });
@@ -147,6 +173,7 @@ describe('SearchBoxComponent', () => {
       const searchBoxComponent = hostFixture.debugElement.query(By.css('gtc-search-box')).componentInstance;
 
       expect(searchBoxComponent.countryInfoSet).toEqual(hostComponent.countryInfoSet);
+      expect(searchBoxComponent.countryIncoming).toEqual(hostComponent.selectedCountry);
 
       spyOn(hostComponent, 'updateSelectedCountry');
       searchBoxComponent.countrySelected.emit(COUNTRY_INFO_SET[0]);

@@ -1,0 +1,8 @@
+<div *ngIf="historyList.length > 0">
+  <h3>Here's a little history on the countries you've been schooled on.</h3>
+  <h4>Click on the name for repeat schooling!</h4>
+
+  <div *ngFor="let country of historyList">
+    <button mat-button color="primary" (click)="historicalCountrySelected.emit(country)">{{ country.name }} - {{ country.isoCode }}</button>
+  </div>
+</div>

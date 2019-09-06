@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {filter} from 'lodash-es';
 
@@ -10,8 +10,9 @@ import {Observable, Subscription} from "rxjs";
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss']
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnChanges {
   @Input() countryInfoSet: Array<CountryInfo>;
+  @Input() countryIncoming: CountryInfo;
   @Output() countrySelected: EventEmitter<CountryInfo> = new EventEmitter<CountryInfo>();
 
   inputForm: FormGroup;
@@ -26,6 +27,12 @@ export class SearchBoxComponent implements OnInit {
     });
 
     this.searchValueChangesSubscription = this.inputForm.controls['search'].valueChanges.subscribe(value => typeof(value) === 'string' && this.searchCountries(value));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.countryIncoming && this.inputForm) {
+      this.inputForm.controls['search'].setValue(changes.countryIncoming.currentValue);
+    }
   }
 
   ngOnDestroy(): void {

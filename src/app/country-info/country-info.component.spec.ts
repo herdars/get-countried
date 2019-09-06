@@ -15,7 +15,7 @@ class TestHostComponent {
   countryInfo: CountryInfo = COUNTRY_INFO_SET[0];
 }
 
-fdescribe('CountryInfoComponent', () => {
+describe('CountryInfoComponent', () => {
   let component: CountryInfoComponent;
   let fixture: ComponentFixture<CountryInfoComponent>;
 

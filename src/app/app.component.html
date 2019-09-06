@@ -1,6 +1,4 @@
-<h1>Get Countried!</h1>
-<br/>
-<h2>Your one stop shop for all your country information needs</h2>
+<h1>Get Countried! - Your one stop shop for all your country information needs</h1>
 <br/>
 <br/>
 
@@ -9,7 +7,10 @@
 </div>
 
 <div *ngIf="!loading">
-  <gtc-search-box [countryInfoSet]="countryInfoSet" (countrySelected)="updateSelectedCountry($event)"></gtc-search-box>
+  <gtc-search-box [countryInfoSet]="countryInfoSet" [countryIncoming]="selectedCountry" (countrySelected)="updateSelectedCountry($event)"></gtc-search-box>
 
   <gtc-country-info [countryInfo]="selectedCountry"></gtc-country-info>
+
+  <br/>
+  <gtc-history-list [countryInfo]="selectedCountry" (historicalCountrySelected)="updateSelectedCountry($event)"></gtc-history-list>
 </div>
