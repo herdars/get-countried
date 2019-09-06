@@ -1,0 +1,15 @@
+<form [formGroup]="inputForm" class="form" novalidate autocomplete="off">
+  <div class="col-md-5 col-lg-6">
+    <mat-form-field class="full-width">
+      <mat-label>Search for country</mat-label>
+
+      <input [matAutocomplete]="countryAuto" matInput formControlName="search" placeholder="Enter a few characters">
+
+      <mat-autocomplete #countryAuto="matAutocomplete" [displayWith]="formatCountryName" (optionSelected)="transmitSelectedCountry()">
+        <mat-option *ngFor="let country of filteredCountries" [value]="country">
+          <div>{{ formatCountryName(country) }}</div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+</form>

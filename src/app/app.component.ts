@@ -38,4 +38,8 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.getCountryInfoSubscription.unsubscribe();
   }
+
+  updateSelectedCountry(country: CountryInfo) {
+    debugger
+  }
 }

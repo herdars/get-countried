@@ -4,4 +4,10 @@
 <br/>
 <br/>
 
-<div>{{ countryInfoSet | json}}</div>
+<div *ngIf="loading">
+  Loading ...
+</div>
+
+<div *ngIf="!loading">
+  <gtc-search-box [countryInfoSet]="countryInfoSet" (countrySelected)="updateSelectedCountry($event)"></gtc-search-box>
+</div>
