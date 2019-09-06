@@ -3,6 +3,7 @@ interface Currency {
   name: string;
   symbol: string;
 }
+
 export interface CountryInfo {
   name: string;
   isoCode: string;

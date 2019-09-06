@@ -10,4 +10,6 @@
 
 <div *ngIf="!loading">
   <gtc-search-box [countryInfoSet]="countryInfoSet" (countrySelected)="updateSelectedCountry($event)"></gtc-search-box>
+
+  <gtc-country-info [countryInfo]="selectedCountry"></gtc-country-info>
 </div>

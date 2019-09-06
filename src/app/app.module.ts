@@ -7,9 +7,10 @@ import { MatAutocompleteModule, MatFormFieldModule, MatInputModule} from '@angul
 
 import { AppComponent } from './app.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
+import { CountryInfoComponent } from './country-info/country-info.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchBoxComponent],
+  declarations: [AppComponent, SearchBoxComponent, CountryInfoComponent],
   imports: [BrowserModule, BrowserAnimationsModule, FormsModule, HttpClientModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]

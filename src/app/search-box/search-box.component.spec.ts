@@ -9,15 +9,17 @@ import {By} from "@angular/platform-browser";
 
 import {COUNTRY_INFO_SET} from "../shared/constants/shared.constants.spec";
 import {SearchBoxComponent} from './search-box.component';
+import {CountryInfo} from "../shared/interfaces/shared.interfaces";
 
 @Component({
   template: `
       <gtc-search-box [countryInfoSet]="countryInfoSet"
-                      (countrySelected)="updateSelectedCountry($event)"></gtc-search-box>
+                      (countrySelected)="updateSelectedCountry($event)">
+      </gtc-search-box>
   `
 })
 class TestHostComponent {
-  countryInfoSet = ['test'];
+  countryInfoSet:Array<CountryInfo> = COUNTRY_INFO_SET;
 
   updateSelectedCountry(evt) {
   }
@@ -134,7 +136,6 @@ describe('SearchBoxComponent', () => {
 
         expect(component.filteredCountries).toEqual([]);
       });
-
     });
   });
 

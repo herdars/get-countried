@@ -1,0 +1,20 @@
+<div *ngIf="countryInfo">
+  <h3>Some details about the country you selected:</h3>
+
+  <dl class="font-style">
+    <dt class="header"></dt>
+    <dd><img class="fixed-image" src="{{countryInfo.flag}}"></dd>
+
+    <dt class="header">Name:</dt>
+    <dd>{{countryInfo.name}}</dd>
+
+    <dt class="header">Primary currency used:</dt>
+    <dd>{{countryInfo.currencies[0].name}}</dd>
+
+    <dt class="header">Latitude / Longitude:</dt>
+    <dd>{{countryInfo.coOrdinates[0]}} / {{countryInfo.coOrdinates[1]}}</dd>
+
+    <dt class="header">Land area:</dt>
+    <dd>{{countryInfo.area}} kmsq</dd>
+  </dl>
+</div>

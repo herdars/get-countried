@@ -16,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy{
   loading: boolean;
   error: boolean;
   countryInfoSet: Array<CountryInfo>;
+  selectedCountry: CountryInfo;
 
   private getCountryInfoSubscription: Subscription = null;
 
@@ -40,6 +41,6 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   updateSelectedCountry(country: CountryInfo) {
-    debugger
+    this.selectedCountry = country;
   }
 }
