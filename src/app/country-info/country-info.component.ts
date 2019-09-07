@@ -1,5 +1,5 @@
-import {Component, Input } from '@angular/core';
-import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+import { Component, Input } from '@angular/core';
+import { CountryInfo } from '@shared/interfaces/shared.interfaces';
 
 @Component({
   selector: 'gtc-country-info',

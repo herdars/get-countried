@@ -1,4 +1,4 @@
-import {CountryInfo} from "../interfaces/shared.interfaces";
+import { CountryInfo } from '../interfaces/shared.interfaces';
 
 export const COUNTRY_INFO_SET: Array<CountryInfo> = [
   {
@@ -24,8 +24,9 @@ export const COUNTRY_INFO_SET: Array<CountryInfo> = [
         code: 'EUR',
         name: 'Euro',
         symbol: '€'
-      }],
+      }
+    ],
     coOrdinates: [60.116667, 19.9],
     area: 1580
   }
-]
+];

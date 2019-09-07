@@ -1,15 +1,15 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Component, NO_ERRORS_SCHEMA} from "@angular/core";
-import {By} from "@angular/platform-browser";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
-import {COUNTRY_INFO_SET} from "@shared/constants/shared.constants.spec";
-import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+import { COUNTRY_INFO_SET } from '@shared/constants/shared.constants.spec';
+import { CountryInfo } from '@shared/interfaces/shared.interfaces';
 
-import {CountryInfoComponent} from "./country-info.component";
+import { CountryInfoComponent } from './country-info.component';
 
 @Component({
   template: `
-      <gtc-country-info [countryInfo]="countryInfo"></gtc-country-info>
+    <gtc-country-info [countryInfo]="countryInfo"></gtc-country-info>
   `
 })
 class TestHostComponent {
@@ -44,7 +44,7 @@ describe('CountryInfoComponent', () => {
       expect(countryInfoComponent.countryInfo).toEqual(hostComponent.countryInfo);
     });
 
-    it('should show nothing if there\'s no country info', () => {
+    it("should show nothing if there's no country info", () => {
       component.countryInfo = null;
       fixture.detectChanges();
 
@@ -58,7 +58,8 @@ describe('CountryInfoComponent', () => {
         fixture.detectChanges();
       });
 
-      it('should show an uninspired header', () => expect(fixture.debugElement.query(By.css('h3')).nativeElement.innerHTML).toBe('Some details about the country you selected:'))
+      it('should show an uninspired header', () =>
+        expect(fixture.debugElement.query(By.css('h3')).nativeElement.innerHTML).toBe('Some details about the country you selected:'));
 
       it('should show the country info in pieces', () => {
         const dts = fixture.debugElement.queryAll(By.css('dt'));
@@ -80,6 +81,6 @@ describe('CountryInfoComponent', () => {
         expect(dts[4].nativeElement.innerHTML).toBe('Land area:');
         expect(dds[4].nativeElement.innerHTML).toContain(COUNTRY_INFO_SET[0].area);
       });
-    })
+    });
   });
 });

@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Subscription} from "rxjs";
-import {filter} from 'lodash-es';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { filter } from 'lodash-es';
 
-import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+import { CountryInfo } from '@shared/interfaces/shared.interfaces';
 
 @Component({
   selector: 'gtc-search-box',
@@ -23,14 +23,16 @@ export class SearchBoxComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.inputForm = this.fb.group({
-      search: [''],
+      search: ['']
     });
 
-    this.searchValueChangesSubscription = this.inputForm.controls['search'].valueChanges.subscribe(value => typeof(value) === 'string' && this.searchCountries(value));
+    this.searchValueChangesSubscription = this.inputForm.controls['search'].valueChanges.subscribe(
+      value => typeof value === 'string' && this.searchCountries(value)
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.countryIncoming.currentValue && this.inputForm) {
+    if (changes.countryIncoming.currentValue && this.inputForm) {
       this.inputForm.controls['search'].setValue(changes.countryIncoming.currentValue);
     }
   }
@@ -49,9 +51,10 @@ export class SearchBoxComponent implements OnInit, OnChanges {
 
   private searchCountries(value: string): void {
     const searchValue = value.toLowerCase().trim();
-    this.filteredCountries = searchValue.length >= 3
-      ? filter(this.countryInfoSet, (country: CountryInfo) => country.name.toLowerCase().indexOf(searchValue) > -1)
-      : [];
+    this.filteredCountries =
+      searchValue.length >= 3
+        ? filter(this.countryInfoSet, (country: CountryInfo) => country.name.toLowerCase().indexOf(searchValue) > -1)
+        : [];
     this.filteredCountries.length = this.filteredCountries.length > 10 ? 10 : this.filteredCountries.length;
   }
 }

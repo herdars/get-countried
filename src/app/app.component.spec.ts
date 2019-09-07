@@ -1,18 +1,17 @@
-import {TestBed, ComponentFixture} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import {CountryService} from "./shared/services/country.service";
-import {of, throwError} from "rxjs";
-import {COUNTRY_INFO_SET} from "./shared/constants/shared.constants.spec";
-import {NO_ERRORS_SCHEMA} from "@angular/core";
-import {By} from "@angular/platform-browser";
+import { CountryService } from './shared/services/country.service';
+import { of, throwError } from 'rxjs';
+import { COUNTRY_INFO_SET } from './shared/constants/shared.constants.spec';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let countryService: CountryService;
   let fixture: ComponentFixture<AppComponent>;
-
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,21 +27,16 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     countryService = TestBed.get(CountryService);
 
-    ((component as any).getCountryInfoSubscription) = {unsubscribe: jasmine.createSpy()};
+    (component as any).getCountryInfoSubscription = { unsubscribe: jasmine.createSpy() };
   });
 
   describe('component', () => {
     it('should create', () => expect(component).toBeTruthy());
 
     it('should define the right member properties', () => {
-      [
-        'title',
-        'loading',
-        'error',
-        'countryInfoSet',
-        'selectedCountry',
-        'getCountryInfoSubscription'
-      ].forEach(prop => expect(component.hasOwnProperty(prop)).toBeDefined());
+      ['title', 'loading', 'error', 'countryInfoSet', 'selectedCountry', 'getCountryInfoSubscription'].forEach(prop =>
+        expect(component.hasOwnProperty(prop)).toBeDefined()
+      );
     });
 
     it('should have correct values for its properties', () => {
@@ -55,29 +49,34 @@ describe('AppComponent', () => {
     describe('on init', () => {
       let getCountryInfoSpy: jasmine.Spy;
 
-      beforeEach(() => getCountryInfoSpy = spyOn(countryService, 'getCountryInfo').and.returnValue(of([])));
+      beforeEach(() => (getCountryInfoSpy = spyOn(countryService, 'getCountryInfo').and.returnValue(of([]))));
       afterEach(() => getCountryInfoSpy.calls.reset());
 
-      it('should make a call to the countryService\'s getCountryInfo method, assign the return value to countryInfoSet ' +
-        'and reset loading state when it succeeds', () => {
-        getCountryInfoSpy.and.returnValue(of(COUNTRY_INFO_SET));
-        component.ngOnInit();
+      it(
+        "should make a call to the countryService's getCountryInfo method, assign the return value to countryInfoSet " +
+          'and reset loading state when it succeeds',
+        () => {
+          getCountryInfoSpy.and.returnValue(of(COUNTRY_INFO_SET));
+          component.ngOnInit();
 
-        expect(countryService.getCountryInfo).toHaveBeenCalled();
-        expect(component.countryInfoSet).toEqual(COUNTRY_INFO_SET);
-        expect(component.error).toBe(false);
-        expect(component.loading).toBe(false);
-      });
+          expect(countryService.getCountryInfo).toHaveBeenCalled();
+          expect(component.countryInfoSet).toEqual(COUNTRY_INFO_SET);
+          expect(component.error).toBe(false);
+          expect(component.loading).toBe(false);
+        }
+      );
 
-      it('should make a call to the countryService\'s getCountryInfo method, assign the error ' +
-        'and reset loading state when it fails', () => {
-        getCountryInfoSpy.and.returnValue(throwError({errorCode: 3344}));
-        component.ngOnInit();
+      it(
+        "should make a call to the countryService's getCountryInfo method, assign the error " + 'and reset loading state when it fails',
+        () => {
+          getCountryInfoSpy.and.returnValue(throwError({ errorCode: 3344 }));
+          component.ngOnInit();
 
-        expect(component.countryInfoSet).toEqual([]);
-        expect(component.error).toBe(true);
-        expect(component.loading).toBe(false);
-      });
+          expect(component.countryInfoSet).toEqual([]);
+          expect(component.error).toBe(true);
+          expect(component.loading).toBe(false);
+        }
+      );
     });
 
     describe('on destroy', () => {
@@ -86,7 +85,7 @@ describe('AppComponent', () => {
 
         expect((component as any).getCountryInfoSubscription.unsubscribe).toHaveBeenCalled();
       });
-    })
+    });
 
     describe('updateSelectedCountry', () => {
       it('should set the internal selectedCountry property to the incoming one', () => {
@@ -104,7 +103,10 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should show an awe inspiring header', () => expect(fixture.debugElement.query(By.css('h1')).nativeElement.innerHTML).toBe('Get Countried! - Your one stop shop for all your country information needs'))
+    it('should show an awe inspiring header', () =>
+      expect(fixture.debugElement.query(By.css('h1')).nativeElement.innerHTML).toBe(
+        'Get Countried! - Your one stop shop for all your country information needs'
+      ));
 
     it('should show a loading message when loading, but not the error message or the actual components', () => {
       component.loading = true;
@@ -121,7 +123,7 @@ describe('AppComponent', () => {
     });
 
     describe('when not loading', () => {
-      beforeEach(() => component.loading = false);
+      beforeEach(() => (component.loading = false));
 
       it('should show an error when the component is in error state, but none of the real stuff', () => {
         component.error = true;
@@ -129,7 +131,9 @@ describe('AppComponent', () => {
 
         const error = fixture.debugElement.query(By.css('.js-test-error'));
         expect(error.nativeElement).toBeTruthy();
-        expect(error.nativeElement.innerHTML).toContain('Unable to load country country information. Come back later for some countriness.');
+        expect(error.nativeElement.innerHTML).toContain(
+          'Unable to load country country information. Come back later for some countriness.'
+        );
 
         expect(fixture.debugElement.query(By.css('gtc-search-box'))).toBeFalsy();
         expect(fixture.debugElement.query(By.css('gtc-country-info'))).toBeFalsy();

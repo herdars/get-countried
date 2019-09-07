@@ -1,11 +1,11 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {CountryService} from './country.service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {noop, of, throwError} from "rxjs";
+import { CountryService } from './country.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { noop, of, throwError } from 'rxjs';
 
-import {COUNTRY_INFO_SET} from "../constants/shared.constants.spec";
-import {RAW_COUNTRY_INFO} from "./country.constants.spec";
+import { COUNTRY_INFO_SET } from '../constants/shared.constants.spec';
+import { RAW_COUNTRY_INFO } from './country.constants.spec';
 
 const COUNTRY_API: string = 'https://restcountries.eu/rest/v2/all';
 
@@ -15,7 +15,6 @@ describe('CountryService', () => {
 
   let service: CountryService;
   let httpTestingController: HttpTestingController;
-
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,7 +43,7 @@ describe('CountryService', () => {
       expect(request.request.method).toBe('GET');
     });
 
-    it('should format the response to the presentation model\'s requirement and return stream the country info to the observable when the call succeeds', () => {
+    it("should format the response to the presentation model's requirement and return stream the country info to the observable when the call succeeds", () => {
       spyOn((service as any).httpClient, 'get').and.returnValue(of(RAW_COUNTRY_INFO));
       service.getCountryInfo().subscribe(successHandler, errorHandler);
 

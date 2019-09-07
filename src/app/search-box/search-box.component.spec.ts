@@ -1,31 +1,28 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Component, NO_ERRORS_SCHEMA} from "@angular/core";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {MatAutocompleteModule, MatInputModule} from "@angular/material";
-import {NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {ReactiveFormsModule} from "@angular/forms";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import {By} from "@angular/platform-browser";
+import { By } from '@angular/platform-browser';
 
-import {COUNTRY_INFO_SET} from "@shared/constants/shared.constants.spec";
-import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+import { COUNTRY_INFO_SET } from '@shared/constants/shared.constants.spec';
+import { CountryInfo } from '@shared/interfaces/shared.interfaces';
 
-import {SearchBoxComponent} from './search-box.component';
+import { SearchBoxComponent } from './search-box.component';
 
 @Component({
   template: `
-      <gtc-search-box [countryInfoSet]="countryInfoSet"
-                      [countryIncoming]="selectedCountry"
-                      (countrySelected)="updateSelectedCountry($event)">
-      </gtc-search-box>
+    <gtc-search-box [countryInfoSet]="countryInfoSet" [countryIncoming]="selectedCountry" (countrySelected)="updateSelectedCountry($event)">
+    </gtc-search-box>
   `
 })
 class TestHostComponent {
   countryInfoSet: Array<CountryInfo> = COUNTRY_INFO_SET;
   selectedCountry: CountryInfo = COUNTRY_INFO_SET[1];
 
-  updateSelectedCountry(evt) {
-  }
+  updateSelectedCountry(evt) {}
 }
 
 describe('SearchBoxComponent', () => {
@@ -35,13 +32,7 @@ describe('SearchBoxComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SearchBoxComponent, TestHostComponent],
-      imports: [
-        HttpClientTestingModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-      ],
+      imports: [HttpClientTestingModule, MatAutocompleteModule, MatInputModule, NoopAnimationsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA]
     });
   });
@@ -50,7 +41,7 @@ describe('SearchBoxComponent', () => {
     fixture = TestBed.createComponent(SearchBoxComponent);
     component = fixture.componentInstance;
 
-    (component.searchValueChangesSubscription as any) = {unsubscribe: jasmine.createSpy()};
+    (component.searchValueChangesSubscription as any) = { unsubscribe: jasmine.createSpy() };
   });
 
   it('should create', () => expect(component).toBeTruthy());
@@ -59,11 +50,9 @@ describe('SearchBoxComponent', () => {
     it('should create', () => expect(component).toBeTruthy());
 
     it('should define the right member properties', () => {
-      [
-        'inputForm',
-        'searchValueChangesSubscription',
-        'filteredCountries',
-      ].forEach(prop => expect(component.hasOwnProperty(prop)).toBeDefined());
+      ['inputForm', 'searchValueChangesSubscription', 'filteredCountries'].forEach(prop =>
+        expect(component.hasOwnProperty(prop)).toBeDefined()
+      );
     });
 
     it('should have correct values for its properties', () => {
@@ -122,7 +111,7 @@ describe('SearchBoxComponent', () => {
         expect(component.inputForm.controls['search'].value).toEqual(COUNTRY_INFO_SET[0]);
       });
 
-      it('should not modify the form if one doesn\'t exist', () => {
+      it("should not modify the form if one doesn't exist", () => {
         component.inputForm = null;
         component.ngOnChanges({
           countryIncoming: {
@@ -135,7 +124,8 @@ describe('SearchBoxComponent', () => {
     });
 
     describe('formatCountryName', () => {
-      it('should return back the formatted country name for display', () => expect(component.formatCountryName(COUNTRY_INFO_SET[0])).toBe('Afghanistan - AFG'));
+      it('should return back the formatted country name for display', () =>
+        expect(component.formatCountryName(COUNTRY_INFO_SET[0])).toBe('Afghanistan - AFG'));
     });
 
     describe('transmitSelectedCountry', () => {
@@ -151,7 +141,19 @@ describe('SearchBoxComponent', () => {
 
     describe('searchCountries', () => {
       it('should populate filteredCountries with a set of filtered country results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
-        component.countryInfoSet = [COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[0]];
+        component.countryInfoSet = [
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0],
+          COUNTRY_INFO_SET[0]
+        ];
         (component as any).searchCountries('afg');
 
         expect(component.filteredCountries.length).toBe(10);
