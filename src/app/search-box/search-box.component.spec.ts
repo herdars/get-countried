@@ -7,9 +7,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import {By} from "@angular/platform-browser";
 
-import {COUNTRY_INFO_SET} from "../shared/constants/shared.constants.spec";
+import {COUNTRY_INFO_SET} from "@shared/constants/shared.constants.spec";
+import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+
 import {SearchBoxComponent} from './search-box.component';
-import {CountryInfo} from "../shared/interfaces/shared.interfaces";
 
 @Component({
   template: `

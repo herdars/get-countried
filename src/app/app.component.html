@@ -1,16 +1,34 @@
-<h1>Get Countried! - Your one stop shop for all your country information needs</h1>
-<br/>
-<br/>
+<h1 class="card">Get Countried! - Your one stop shop for all your country information needs</h1>
 
-<div *ngIf="loading">
+<div *ngIf="loading; else showContent" class="card js-test-loading">
   Loading ...
 </div>
 
-<div *ngIf="!loading">
-  <gtc-search-box [countryInfoSet]="countryInfoSet" [countryIncoming]="selectedCountry" (countrySelected)="updateSelectedCountry($event)"></gtc-search-box>
+<ng-template #showContent>
+  <div *ngIf="error; else showRealContent" class="js-test-error">
+    <div class="mat-error">Unable to load country country information. Come back later for some countriness.</div>
+  </div>
 
-  <gtc-country-info [countryInfo]="selectedCountry"></gtc-country-info>
+  <ng-template #showRealContent>
+    <div class="card">
+      <gtc-search-box [countryInfoSet]="countryInfoSet"
+                      [countryIncoming]="selectedCountry"
+                      (countrySelected)="updateSelectedCountry($event)"
+                      class="card">
+      </gtc-search-box>
+    </div>
 
-  <br/>
-  <gtc-history-list [countryInfo]="selectedCountry" (historicalCountrySelected)="updateSelectedCountry($event)"></gtc-history-list>
-</div>
+    <div class="card">
+      <gtc-country-info [countryInfo]="selectedCountry"
+                        class="card">
+      </gtc-country-info>
+    </div>
+
+    <div class="card">
+      <gtc-history-list [countryInfo]="selectedCountry"
+                        (historicalCountrySelected)="updateSelectedCountry($event)"
+                        class="card">
+      </gtc-history-list>
+    </div>
+  </ng-template>
+</ng-template>

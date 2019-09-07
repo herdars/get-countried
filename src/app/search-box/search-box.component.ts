@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {Subscription} from "rxjs";
 import {filter} from 'lodash-es';
 
-import {CountryInfo} from "../shared/interfaces/shared.interfaces";
-import {Observable, Subscription} from "rxjs";
+import {CountryInfo} from "@shared/interfaces/shared.interfaces";
 
 @Component({
   selector: 'gtc-search-box',
@@ -30,7 +30,7 @@ export class SearchBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.countryIncoming && this.inputForm) {
+    if(changes.countryIncoming.currentValue && this.inputForm) {
       this.inputForm.controls['search'].setValue(changes.countryIncoming.currentValue);
     }
   }

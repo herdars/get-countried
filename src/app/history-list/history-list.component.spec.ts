@@ -4,8 +4,8 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {ReactiveFormsModule} from "@angular/forms";
 import {By} from "@angular/platform-browser";
 
-import {CountryInfo} from "../shared/interfaces/shared.interfaces";
-import {COUNTRY_INFO_SET} from "../shared/constants/shared.constants.spec";
+import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+import {COUNTRY_INFO_SET} from "@shared/constants/shared.constants.spec";
 
 import { HistoryListComponent } from './history-list.component';
 

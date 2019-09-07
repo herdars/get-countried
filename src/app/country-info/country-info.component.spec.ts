@@ -2,8 +2,9 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, NO_ERRORS_SCHEMA} from "@angular/core";
 import {By} from "@angular/platform-browser";
 
-import {COUNTRY_INFO_SET} from "../shared/constants/shared.constants.spec";
-import {CountryInfo} from "../shared/interfaces/shared.interfaces";
+import {COUNTRY_INFO_SET} from "@shared/constants/shared.constants.spec";
+import {CountryInfo} from "@shared/interfaces/shared.interfaces";
+
 import {CountryInfoComponent} from "./country-info.component";
 
 @Component({

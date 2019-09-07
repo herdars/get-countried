@@ -3,8 +3,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {finalize} from 'rxjs/operators';
 import {Subscription} from "rxjs";
 
-import {CountryService} from "./shared/services/country.service";
-import {CountryInfo} from "./shared/interfaces/shared.interfaces";
+import {CountryService} from "@shared/services/country.service";
+import {CountryInfo} from "@shared/interfaces/shared.interfaces";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,6 @@ import {CountryInfo} from "./shared/interfaces/shared.interfaces";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'get-countried';
   loading: boolean;
   error: boolean;
   countryInfoSet: Array<CountryInfo>;
@@ -32,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy{
       .pipe(finalize(() => this.loading = false))
       .subscribe(
         (countryInfoSet: Array<CountryInfo>) => this.countryInfoSet = countryInfoSet,
-        (error: any) => this.error = true
+        _ => this.error = true
       )
   }
 
