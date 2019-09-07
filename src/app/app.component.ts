@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getCountryInfoSubscription.unsubscribe();
   }
 
-  updateSelectedCountry(country: CountryInfo) {
+  updateSelectedCountry(country: CountryInfo): void {
     this.selectedCountry = country;
   }
 }

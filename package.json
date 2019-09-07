@@ -6,8 +6,10 @@
     "start": "ng serve --ssl true",
     "build": "ng build",
     "test": "ng test",
+    "test:coverage": "ng test --watch false --code-coverage true",
     "lint": "prettier --config ./prettier.config.js --list-different \"{src,e2e}/{app,environments,assets}/**/*{.ts,.js,.json}\" && ng lint",
     "lint:fix": "prettier --write --config ./prettier.config.js --list-different \"{src,e2e}/{app,environments,assets}/**/*{.ts,.js,.json}\"",
+    "all": "yarn test:coverage && yarn start",
     "e2e": "ng e2e"
   },
   "private": true,
