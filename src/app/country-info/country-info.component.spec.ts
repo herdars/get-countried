@@ -76,7 +76,7 @@ describe('CountryInfoComponent', () => {
         expect(dds[2].nativeElement.innerHTML).toContain(COUNTRY_INFO_SET[0].currencies[0].name);
 
         expect(dts[3].nativeElement.innerHTML).toBe('Latitude / Longitude:');
-        expect(dds[3].nativeElement.innerHTML).toContain(`${COUNTRY_INFO_SET[0].coOrdinates[0]} / ${COUNTRY_INFO_SET[0].coOrdinates[1]}`);
+        expect(dds[3].nativeElement.innerHTML).toContain(`${COUNTRY_INFO_SET[0].coOrdinates[0]}° / ${COUNTRY_INFO_SET[0].coOrdinates[1]}°`);
 
         expect(dts[4].nativeElement.innerHTML).toBe('Land area:');
         expect(dds[4].nativeElement.innerHTML).toContain(COUNTRY_INFO_SET[0].area);

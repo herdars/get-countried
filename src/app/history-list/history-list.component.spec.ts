@@ -53,7 +53,7 @@ describe('HistoryListComponent', () => {
           } as any
         });
 
-        expect(component.historyList).toEqual([COUNTRY_INFO_SET[1], COUNTRY_INFO_SET[0]]);
+        expect(component.historyList).toEqual([COUNTRY_INFO_SET[1], COUNTRY_INFO_SET[0], COUNTRY_INFO_SET[2]]);
       });
 
       it("should not affect the history list if the new info isn't relevant", () => {
@@ -107,9 +107,10 @@ describe('HistoryListComponent', () => {
       it('should show a set of buttons for each country in the history list', () => {
         const buttons = fixture.debugElement.queryAll(By.css('button'));
 
-        expect(buttons.length).toBe(2);
+        expect(buttons.length).toBe(3);
 
         expect(buttons[0].nativeElement.innerHTML).toBe('Afghanistan - AFG');
+        expect(buttons[1].nativeElement.innerHTML).toBe('Åland Islands - ALA');
         expect(buttons[1].nativeElement.innerHTML).toBe('Åland Islands - ALA');
       });
 

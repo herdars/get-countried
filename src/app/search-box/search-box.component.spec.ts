@@ -79,13 +79,13 @@ describe('SearchBoxComponent', () => {
         expect(searchControl.value).toBe('');
       });
 
-      it('should subscribe to value changes of the search field call to search countries if string type', () => {
+      it('should subscribe to value changes of the search field and on changes, call to search countries with either the search string or an empty string', () => {
         spyOn(component as any, 'searchCountries');
 
         expect((component as any).searchCountries).not.toHaveBeenCalled();
 
         component.inputForm.get('search').setValue({});
-        expect((component as any).searchCountries).not.toHaveBeenCalled();
+        expect((component as any).searchCountries).toHaveBeenCalledWith('');
 
         component.inputForm.get('search').setValue('abc');
         expect((component as any).searchCountries).toHaveBeenCalledWith('abc');
@@ -140,7 +140,7 @@ describe('SearchBoxComponent', () => {
     });
 
     describe('searchCountries', () => {
-      it('should populate filteredCountries with a set of filtered country results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
+      it('should populate filteredCountries with a set of filtered country names results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
         component.countryInfoSet = [
           COUNTRY_INFO_SET[0],
           COUNTRY_INFO_SET[0],
@@ -155,6 +155,25 @@ describe('SearchBoxComponent', () => {
           COUNTRY_INFO_SET[0]
         ];
         (component as any).searchCountries('afg');
+
+        expect(component.filteredCountries.length).toBe(10);
+      });
+
+      it('should populate filteredCountries with a set of filtered country code  results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
+        component.countryInfoSet = [
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2],
+          COUNTRY_INFO_SET[2]
+        ];
+        (component as any).searchCountries('gbr');
 
         expect(component.filteredCountries.length).toBe(10);
       });

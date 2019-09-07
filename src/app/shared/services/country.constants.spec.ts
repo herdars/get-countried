@@ -1,4 +1,4 @@
-import { CountryInfo } from '../interfaces/shared.interfaces';
+import {CountryInfo} from '../interfaces/shared.interfaces';
 
 export const RAW_COUNTRY_INFO: Array<any> = [
   {
@@ -20,16 +20,16 @@ export const RAW_COUNTRY_INFO: Array<any> = [
     borders: ['IRN', 'PAK', 'TKM', 'UZB', 'TJK', 'CHN'],
     nativeName: 'افغانستان',
     numericCode: '004',
-    currencies: [{ code: 'AFN', name: 'Afghan afghani', symbol: '؋' }],
+    currencies: [{code: 'AFN', name: 'Afghan afghani', symbol: '؋'}],
     languages: [
-      { iso639_1: 'ps', iso639_2: 'pus', name: 'Pashto', nativeName: 'پښتو' },
+      {iso639_1: 'ps', iso639_2: 'pus', name: 'Pashto', nativeName: 'پښتو'},
       {
         iso639_1: 'uz',
         iso639_2: 'uzb',
         name: 'Uzbek',
         nativeName: 'Oʻzbek'
       },
-      { iso639_1: 'tk', iso639_2: 'tuk', name: 'Turkmen', nativeName: 'Türkmen' }
+      {iso639_1: 'tk', iso639_2: 'tuk', name: 'Turkmen', nativeName: 'Türkmen'}
     ],
     translations: {
       de: 'Afghanistan',
@@ -73,8 +73,8 @@ export const RAW_COUNTRY_INFO: Array<any> = [
     borders: [],
     nativeName: 'Åland',
     numericCode: '248',
-    currencies: [{ code: 'EUR', name: 'Euro', symbol: '€' }],
-    languages: [{ iso639_1: 'sv', iso639_2: 'swe', name: 'Swedish', nativeName: 'svenska' }],
+    currencies: [{code: 'EUR', name: 'Euro', symbol: '€'}],
+    languages: [{iso639_1: 'sv', iso639_2: 'swe', name: 'Swedish', nativeName: 'svenska'}],
     translations: {
       de: 'Åland',
       es: 'Alandia',
@@ -88,7 +88,44 @@ export const RAW_COUNTRY_INFO: Array<any> = [
       fa: 'جزایر الند'
     },
     flag: 'https://restcountries.eu/data/ala.svg',
-    regionalBlocs: [{ acronym: 'EU', name: 'European Union', otherAcronyms: [], otherNames: [] }],
+    regionalBlocs: [{acronym: 'EU', name: 'European Union', otherAcronyms: [], otherNames: []}],
     cioc: ''
+  },
+  {
+    name: 'United Kingdom of Great Britain and Northern Ireland',
+    topLevelDomain: ['.uk'],
+    alpha2Code: 'GB',
+    alpha3Code: 'GBR',
+    callingCodes: ['44'],
+    capital: 'London',
+    altSpellings: ['GB', 'UK', 'Great Britain'],
+    region: 'Europe',
+    subregion: 'Northern Europe',
+    population: 65110000,
+    latlng: [54.0, -2.0],
+    demonym: 'British',
+    area: 242900.0,
+    gini: 34.0,
+    timezones: ['UTC-08:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:00', 'UTC-02:00', 'UTC', 'UTC+01:00', 'UTC+02:00', 'UTC+06:00'],
+    borders: ['IRL'],
+    nativeName: 'United Kingdom',
+    numericCode: '826',
+    currencies: [{'code': 'GBP', 'name': 'British pound', 'symbol': '£'}],
+    languages: [{'iso639_1': 'en', 'iso639_2': 'eng', 'name': 'English', 'nativeName': 'English'}],
+    translations: {
+      de: 'Vereinigtes Königreich',
+      es: 'Reino Unido',
+      fr: 'Royaume-Uni',
+      ja: 'イギリス',
+      it: 'Regno Unito',
+      br: 'Reino Unido',
+      pt: 'Reino Unido',
+      nl: 'Verenigd Koninkrijk',
+      hr: 'Ujedinjeno Kraljevstvo',
+      fa: 'بریتانیای کبیر و ایرلند شمالی'
+    },
+    flag: 'https://restcountries.eu/data/gbr.svg',
+    regionalBlocs: [{'acronym': 'EU', 'name': 'European Union', 'otherAcronyms': [], 'otherNames': []}],
+    cioc: 'GBR'
   }
 ];

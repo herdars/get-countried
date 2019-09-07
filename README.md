@@ -21,6 +21,8 @@ Code coverage tool - Istanbul
 
 Access `https://localhost:4200` for using the application 
 
+Note the secure protocol. 
+
 ## Development server along
   
 Run `yarn start` for a dev server. The app will automatically reload if you change any of the source files.

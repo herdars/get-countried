@@ -27,7 +27,7 @@ export class SearchBoxComponent implements OnInit, OnChanges {
     });
 
     this.searchValueChangesSubscription = this.inputForm.controls['search'].valueChanges.subscribe(
-      value => typeof value === 'string' && this.searchCountries(value)
+      value => this.searchCountries(typeof value === 'string' ? value : '')
     );
   }
 
@@ -53,7 +53,7 @@ export class SearchBoxComponent implements OnInit, OnChanges {
     const searchValue = value.toLowerCase().trim();
     this.filteredCountries =
       searchValue.length >= 3
-        ? filter(this.countryInfoSet, (country: CountryInfo) => country.name.toLowerCase().indexOf(searchValue) > -1)
+        ? filter(this.countryInfoSet, (country: CountryInfo) => country.name.toLowerCase().indexOf(searchValue) > -1 || country.isoCode.toLowerCase().indexOf(searchValue) > -1)
         : [];
     this.filteredCountries.length = this.filteredCountries.length > 10 ? 10 : this.filteredCountries.length;
   }
