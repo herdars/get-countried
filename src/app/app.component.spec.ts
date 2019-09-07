@@ -132,7 +132,7 @@ describe('AppComponent', () => {
         const error = fixture.debugElement.query(By.css('.js-test-error'));
         expect(error.nativeElement).toBeTruthy();
         expect(error.nativeElement.innerHTML).toContain(
-          'Unable to load country country information. Come back later for some countriness.'
+          'Unable to load country information. Come back later for some countriness.'
         );
 
         expect(fixture.debugElement.query(By.css('gtc-search-box'))).toBeFalsy();

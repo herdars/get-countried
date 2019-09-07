@@ -60,15 +60,6 @@ describe('SearchBoxComponent', () => {
       expect(component.filteredCountries).not.toBeDefined();
     });
 
-    it('should accept the input properties correctly from the host component', () => {
-      const hostFixture: ComponentFixture<TestHostComponent> = TestBed.createComponent(TestHostComponent);
-      const hostComponent: TestHostComponent = hostFixture.componentInstance;
-      hostFixture.detectChanges();
-      const searchBoxComponent = hostFixture.debugElement.query(By.css('gtc-search-box')).componentInstance;
-
-      expect(searchBoxComponent.countryInfoSet).toEqual(hostComponent.countryInfoSet);
-    });
-
     describe('on init', () => {
       beforeEach(() => component.ngOnInit());
 
