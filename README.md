@@ -13,13 +13,17 @@ Run `yarn` to download the dependencies the project depends on.
 
 ## Getting going
 
-Run `yarn all` to run the test, verify code coverage and kick-start the dev server
+Run `yarn all` to check the code lint, run the test, verify code coverage and kick-start the dev server
 
-Test framework - Jasmine
+Linter: Prettier + TSLint
 
-Code coverage tool - Istanbul
+Test framework: Jasmine
 
-Test coverage will break if there isn't 100% ooverage across lines, functions, branches and statements
+Code coverage tool: Istanbul
+
+1. Linter will break if the code isn't upto standards.
+
+2. Test coverage will break if there isn't 100% ooverage across lines, functions, branches and statements
 
 Access `https://localhost:4200` for using the application. Note the secure protocol. 
 

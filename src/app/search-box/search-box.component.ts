@@ -1,16 +1,17 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { filter } from 'lodash-es';
 
 import { CountryInfo } from '@shared/interfaces/shared.interfaces';
+import { MAX_RESULTS, MIN_SEARCH_LENGTH } from './search-box.constants';
 
 @Component({
   selector: 'gtc-search-box',
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss']
 })
-export class SearchBoxComponent implements OnInit, OnChanges {
+export class SearchBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() countryInfoSet: Array<CountryInfo>;
   @Input() countryIncoming: CountryInfo;
   @Output() countrySelected: EventEmitter<CountryInfo> = new EventEmitter<CountryInfo>();
@@ -26,8 +27,8 @@ export class SearchBoxComponent implements OnInit, OnChanges {
       search: ['']
     });
 
-    this.searchValueChangesSubscription = this.inputForm.controls['search'].valueChanges.subscribe(
-      value => this.searchCountries(typeof value === 'string' ? value : '')
+    this.searchValueChangesSubscription = this.inputForm.controls['search'].valueChanges.subscribe(value =>
+      this.searchCountries(typeof value === 'string' ? value : '')
     );
   }
 
@@ -52,9 +53,13 @@ export class SearchBoxComponent implements OnInit, OnChanges {
   private searchCountries(value: string): void {
     const searchValue = value.toLowerCase().trim();
     this.filteredCountries =
-      searchValue.length >= 3
-        ? filter(this.countryInfoSet, (country: CountryInfo) => country.name.toLowerCase().indexOf(searchValue) > -1 || country.isoCode.toLowerCase().indexOf(searchValue) > -1)
+      searchValue.length >= MIN_SEARCH_LENGTH
+        ? filter(
+            this.countryInfoSet,
+            (country: CountryInfo) =>
+              country.name.toLowerCase().indexOf(searchValue) > -1 || country.isoCode.toLowerCase().indexOf(searchValue) > -1
+          )
         : [];
-    this.filteredCountries.length = this.filteredCountries.length > 10 ? 10 : this.filteredCountries.length;
+    this.filteredCountries.length = this.filteredCountries.length > MAX_RESULTS ? MAX_RESULTS : this.filteredCountries.length;
   }
 }

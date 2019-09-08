@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { CountryInfo } from '@shared/interfaces/shared.interfaces';
@@ -27,7 +25,6 @@ describe('HistoryListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HistoryListComponent, TestHostComponent],
-      imports: [HttpClientTestingModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA]
     });
   });

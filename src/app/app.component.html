@@ -1,4 +1,4 @@
-<h1 class="card">Get Countried! - Your one stop shop for all your country information needs</h1>
+<h1 class="card">Get Countried! A one stop shop for all your country information needs</h1>
 
 <div *ngIf="loading; else showContent" class="card js-test-loading">
   Loading ...
@@ -13,21 +13,17 @@
     <div class="card">
       <gtc-search-box [countryInfoSet]="countryInfoSet"
                       [countryIncoming]="selectedCountry"
-                      (countrySelected)="updateSelectedCountry($event)"
-                      class="card">
+                      (countrySelected)="updateSelectedCountry($event)">
       </gtc-search-box>
     </div>
 
     <div class="card">
-      <gtc-country-info [countryInfo]="selectedCountry"
-                        class="card">
-      </gtc-country-info>
+      <gtc-country-info [countryInfo]="selectedCountry"></gtc-country-info>
     </div>
 
     <div class="card">
       <gtc-history-list [countryInfo]="selectedCountry"
-                        (historicalCountrySelected)="updateSelectedCountry($event)"
-                        class="card">
+                        (historicalCountrySelected)="updateSelectedCountry($event)">
       </gtc-history-list>
     </div>
   </ng-template>

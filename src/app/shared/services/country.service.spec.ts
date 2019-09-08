@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-
-import { CountryService } from './country.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { noop, of, throwError } from 'rxjs';
 
 import { COUNTRY_INFO_SET } from '../constants/shared.constants.spec';
+
+import { CountryService } from './country.service';
 import { RAW_COUNTRY_INFO } from './country.constants.spec';
 
 const COUNTRY_API: string = 'https://restcountries.eu/rest/v2/all';
@@ -30,10 +30,7 @@ describe('CountryService', () => {
     errorHandler.calls.reset();
   });
 
-  it('should be created', () => {
-    const service: CountryService = TestBed.get(CountryService);
-    expect(service).toBeTruthy();
-  });
+  it('should be created', () => expect(service).toBeTruthy());
 
   describe('getCountryInfo', () => {
     it('should make a call to the correct API', () => {

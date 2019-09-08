@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import { By } from '@angular/platform-browser';
 import { COUNTRY_INFO_SET } from '@shared/constants/shared.constants.spec';
 import { CountryInfo } from '@shared/interfaces/shared.interfaces';
 
+import { MAX_RESULTS, MIN_SEARCH_LENGTH } from './search-box.constants';
 import { SearchBoxComponent } from './search-box.component';
 
 @Component({
@@ -32,7 +32,7 @@ describe('SearchBoxComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SearchBoxComponent, TestHostComponent],
-      imports: [HttpClientTestingModule, MatAutocompleteModule, MatInputModule, NoopAnimationsModule, ReactiveFormsModule],
+      imports: [MatAutocompleteModule, MatInputModule, NoopAnimationsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA]
     });
   });
@@ -131,7 +131,7 @@ describe('SearchBoxComponent', () => {
     });
 
     describe('searchCountries', () => {
-      it('should populate filteredCountries with a set of filtered country names results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
+      it(`should populate filteredCountries with a set of filtered country names results from the country info set if the search string is ${MIN_SEARCH_LENGTH} chars or longer, limited to ${MAX_RESULTS}`, () => {
         component.countryInfoSet = [
           COUNTRY_INFO_SET[0],
           COUNTRY_INFO_SET[0],
@@ -147,10 +147,11 @@ describe('SearchBoxComponent', () => {
         ];
         (component as any).searchCountries('afg');
 
-        expect(component.filteredCountries.length).toBe(10);
+        expect(component.countryInfoSet.length).toBe(11);
+        expect(component.filteredCountries.length).toBe(MAX_RESULTS);
       });
 
-      it('should populate filteredCountries with a set of filtered country code  results from the country info set if the search string is 3 chars or longer, limited to 10', () => {
+      it(`should populate filteredCountries with a set of filtered country code results from the country info set if the search string is ${MIN_SEARCH_LENGTH} chars or longer, limited to ${MAX_RESULTS}`, () => {
         component.countryInfoSet = [
           COUNTRY_INFO_SET[2],
           COUNTRY_INFO_SET[2],
@@ -166,10 +167,11 @@ describe('SearchBoxComponent', () => {
         ];
         (component as any).searchCountries('gbr');
 
-        expect(component.filteredCountries.length).toBe(10);
+        expect(component.countryInfoSet.length).toBe(11);
+        expect(component.filteredCountries.length).toBe(MAX_RESULTS);
       });
 
-      it('should populate filteredCountries with an empty array if the search string is less than 3 chars', () => {
+      it(`should populate filteredCountries with an empty array if the search string is less than ${MIN_SEARCH_LENGTH} chars`, () => {
         component.countryInfoSet = COUNTRY_INFO_SET;
         (component as any).searchCountries('af');
 

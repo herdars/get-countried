@@ -1,4 +1,4 @@
-import {CountryInfo} from '../interfaces/shared.interfaces';
+import { CountryInfo } from '../interfaces/shared.interfaces';
 
 export const COUNTRY_INFO_SET: Array<CountryInfo> = [
   {
@@ -41,6 +41,6 @@ export const COUNTRY_INFO_SET: Array<CountryInfo> = [
       }
     ],
     coOrdinates: [54.0, -2.0],
-    area: 242900.0,
+    area: 242900.0
   }
 ];

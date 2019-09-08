@@ -1,12 +1,13 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-
-import { CountryService } from './shared/services/country.service';
-import { of, throwError } from 'rxjs';
-import { COUNTRY_INFO_SET } from './shared/constants/shared.constants.spec';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { of, throwError } from 'rxjs';
+
+import { CountryService } from '@shared/services/country.service';
+import { COUNTRY_INFO_SET } from '@shared/constants/shared.constants.spec';
+
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -105,7 +106,7 @@ describe('AppComponent', () => {
 
     it('should show an awe inspiring header', () =>
       expect(fixture.debugElement.query(By.css('h1')).nativeElement.innerHTML).toBe(
-        'Get Countried! - Your one stop shop for all your country information needs'
+        'Get Countried! A one stop shop for all your country information needs'
       ));
 
     it('should show a loading message when loading, but not the error message or the actual components', () => {
@@ -131,9 +132,7 @@ describe('AppComponent', () => {
 
         const error = fixture.debugElement.query(By.css('.js-test-error'));
         expect(error.nativeElement).toBeTruthy();
-        expect(error.nativeElement.innerHTML).toContain(
-          'Unable to load country information. Come back later for some countriness.'
-        );
+        expect(error.nativeElement.innerHTML).toContain('Unable to load country information. Come back later for some countriness.');
 
         expect(fixture.debugElement.query(By.css('gtc-search-box'))).toBeFalsy();
         expect(fixture.debugElement.query(By.css('gtc-country-info'))).toBeFalsy();
@@ -163,6 +162,7 @@ describe('AppComponent', () => {
 
         it('shows the gtc-country-info component with all the correct config', () => {
           const countryInfoComponent = fixture.debugElement.query(By.css('gtc-country-info'));
+
           expect(countryInfoComponent.nativeElement).toBeTruthy();
           expect(countryInfoComponent.properties.countryInfo).toEqual(component.selectedCountry);
         });
@@ -170,7 +170,6 @@ describe('AppComponent', () => {
         it('shows the gtc-history-list component with all the correct config and event handlers attached', () => {
           const historyListComponent = fixture.debugElement.query(By.css('gtc-history-list'));
           expect(historyListComponent.nativeElement).toBeTruthy();
-
           expect(historyListComponent.properties.countryInfo).toEqual(component.selectedCountry);
 
           spyOn(component, 'updateSelectedCountry');
